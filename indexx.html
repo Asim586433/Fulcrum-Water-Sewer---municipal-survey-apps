@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Fulcrum Water & Sewer · municipal survey apps</title>
+  <!-- SEO meta -->
+  <meta name="description" content="Custom Fulcrum apps for water & sewer infrastructure — faster field data, GPS mapping, offline mobile, real‑time reporting. Built for cities.">
+  <meta name="keywords" content="Fulcrum developer, water infrastructure survey app, sewer inspection app, municipal data collection, GIS integration, mobile field data collection">
+  <!-- schema markup (local service) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Fulcrum Water & Sewer Solutions",
+    "description": "Fulcrum‑based app development for municipal water and sewer infrastructure surveys.",
+    "url": "https://www.fulcrumwatersewer.example",
+    "telephone": "+1-555-123-4567",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Springfield",
+      "addressRegion": "IL",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/example"
+    ],
+    "areaServed": {
+      "@type": "City",
+      "name": "Municipalities nationwide"
+    }
+  }
+  </script>
+  <!-- critical css (inlined for speed) -->
+  <style>
+    /* reset & base — fast, minimal */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #fafbfc;
+      color: #1e2b3c;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    /* header / nav */
+    .header {
+      background: #ffffff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+      padding: 0.9rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b4f6c, #1b7b9e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #2a4059;
+      font-size: 1rem;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #0f6f94; }
+    .cta-nav {
+      background: #0f6f94;
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+    }
+    .cta-nav:hover { background: #0a5673; color: white; }
+    /* mobile nav adjustments */
+    @media (max-width: 700px) {
+      .nav-container { flex-direction: column; gap: 0.8rem; }
+      .nav-links { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
+    }
+    /* main containers */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    section { scroll-margin-top: 5rem; }
+    /* cards / benefits */
+    .benefit-grid, .service-grid, .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .benefit-card, .service-card, .how-card {
+      background: white;
+      padding: 1.8rem 1.5rem;
+      border-radius: 24px;
+      box-shadow: 0 8px 20px rgba(0,32,64,0.03);
+      transition: transform 0.1s ease, box-shadow 0.2s;
+      border: 1px solid #edf2f7;
+    }
+    .benefit-card:hover, .service-card:hover { box-shadow: 0 12px 28px rgba(0,60,100,0.08); }
+    .icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 2.7rem;
+      font-weight: 700;
+      line-height: 1.2;
+      max-width: 900px;
+      color: #0a2a38;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 650;
+      margin-bottom: 0.75rem;
+      color: #153e54;
+    }
+    .headline-sub {
+      font-size: 1.3rem;
+      color: #385e72;
+      margin: 1rem 0 1.8rem;
+    }
+    .btn {
+      display: inline-block;
+      background: #0f6f94;
+      color: white;
+      font-weight: 600;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 4px 8px rgba(10,80,120,0.2);
+    }
+    .btn:hover { background: #0a5673; transform: scale(1.02); }
+    .btn-outline {
+      background: transparent;
+      color: #0f6f94;
+      border: 2px solid #0f6f94;
+      box-shadow: none;
+    }
+    .btn-outline:hover { background: #e7f2f8; color: #07455e; }
+    /* hero */
+    .hero {
+      background: #f0f7fc;
+      border-bottom: 1px solid #dee9f0;
+    }
+    .hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    /* footer / contact */
+    .contact-form {
+      background: white;
+      border-radius: 28px;
+      padding: 2.5rem;
+      box-shadow: 0 12px 30px rgba(0,30,50,0.05);
+      border: 1px solid #e2edf2;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .form-group { margin-bottom: 1.2rem; }
+    input, textarea, select {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 1.5px solid #d9e4ec;
+      border-radius: 30px;
+      font-size: 1rem;
+      background: white;
+      transition: 0.15s;
+    }
+    input:focus, textarea:focus {
+      border-color: #0f6f94;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(15,111,148,0.15);
+    }
+    textarea { min-height: 110px; border-radius: 28px; }
+    .footer-bottom {
+      text-align: center;
+      padding: 2rem 0 1rem;
+      color: #557a8c;
+      font-size: 0.9rem;
+    }
+    /* utilities */
+    .text-center { text-align: center; }
+    .mt-1 { margin-top: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .bg-soft { background: #f4fafd; }
+    /* image compression (low quality / pure css stand-in) */
+    .placeholder-icon {
+      background: #cbdde9;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+    }
+    /* inline small optimizations */
+    a, button { transition: all 0.1s ease; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="nav-container">
+      <a href="#home" class="logo">⚙️ FulcrumWater&nbsp;·&nbsp;Sewer</a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="cta-nav">📅 Book consultation</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Water & sewer survey apps <br>built on Fulcrum for cities</h1>
+      <p class="headline-sub">Faster field data, GPS accuracy, offline mobile, real‑time reporting — purpose‑built for public works.</p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.8rem 0 1rem;">
+        <a href="#contact" class="btn">📞 Book a free consultation</a>
+        <a href="#services" class="btn btn-outline">Explore services</a>
+      </div>
+      <!-- benefit preview (icons+text) -->
+      <div class="benefit-grid" style="margin-top: 2.5rem;">
+        <div class="benefit-card"><span class="icon">⚡</span><h3>Faster data</h3><p>Replace clipboards with smart forms, reduce field time by 40%.</p></div>
+        <div class="benefit-card"><span class="icon">📍</span><h3>Accurate GPS mapping</h3><p>Sub‑meter capture for manholes, hydrants, valves – GIS ready.</p></div>
+        <div class="benefit-card"><span class="icon">📴</span><h3>Offline mobile</h3><p>Fulcrum works in remote areas, syncs when signal returns.</p></div>
+        <div class="benefit-card"><span class="icon">📊</span><h3>Real‑time reporting</h3><p>Managers see field updates instantly, no more waiting.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="container">
+    <h2>Expert Fulcrum services for water & sewer</h2>
+    <p class="mb-2" style="font-size: 1.2rem; color: #2b5770;">We build exactly what your field crews need — no clutter, just efficiency.</p>
+    <div class="service-grid">
+      <div class="service-card"><span class="icon">📱</span><h3>Fulcrum app development</h3><p>Custom apps tailored to water distribution, sewer collection, and CMOM.</p></div>
+      <div class="service-card"><span class="icon">🧠</span><h3>Smart forms + conditional logic</h3><p>Hide/show fields based on asset type, reduce errors, speed up inspections.</p></div>
+      <div class="service-card"><span class="icon">🗺️</span><h3>GIS integration</h3><p>Seamless sync with your existing ArcGIS / QGIS, field‑to‑office continuity.</p></div>
+      <div class="service-card"><span class="icon">🏗️</span><h3>Asset management setup</h3><p>Structure data for easy handoff to Cityworks, Cartegraph, or Excel.</p></div>
+      <div class="service-card"><span class="icon">📎</span><h3>Data export & reporting automation</h3><p>Auto‑generate PDF reports, shapefiles, or tables – weekly email delivery.</p></div>
+      <div class="service-card"><span class="icon">🛠️</span><h3>Legacy migration</h3><p>We’ll convert old paper forms or Access DBs into Fulcrum smoothly.</p></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="bg-soft">
+    <div class="container">
+      <h2>From discovery to deployment in weeks</h2>
+      <div class="how-grid">
+        <div class="how-card"><span class="icon">🔍</span><h3>1. Discovery & workflow mapping</h3><p>We interview crews, watch field work, map every step to eliminate pain points.</p></div>
+        <div class="how-card"><span class="icon">📲</span><h3>2. App design & build in Fulcrum</h3><p>Drag‑drop form builder, conditional logic, custom maps, and photo integration.</p></div>
+        <div class="how-card"><span class="icon">🧪</span><h3>3. Field testing</h3><p>Pilot with 2–3 crews, refine based on real feedback, ensure rock‑solid offline sync.</p></div>
+        <div class="how-card"><span class="icon">🚀</span><h3>4. Training & deployment</h3><p>Hands‑on training for crews and office staff, plus a quick reference guide.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="container">
+    <div style="display: flex; flex-wrap: wrap; gap: 3rem; align-items: center;">
+      <div style="flex: 2; min-width: 280px;">
+        <h2>Built by people who know infrastructure & field crews</h2>
+        <p style="font-size: 1.2rem; margin: 1rem 0 1.5rem;">We’ve walked miles of sewer lines and catalogued thousands of hydrants. Our team combines 20+ years of municipal experience with Fulcrum expertise.</p>
+        <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+          <div style="display: flex; gap: 0.8rem;"><span style="font-size: 1.8rem;">🧑‍🔧</span><span><strong>Field‑first usability</strong> — If a 20‑year veteran can’t use it with gloves, we redesign.</span></div>
+          <div style="display: flex; gap: 0.8rem;"><span style="font-size: 1.8rem;">🏛️</span><span><strong>Worked with 15+ cities</strong> — from 5k to 500k population, we know the budget & reporting constraints.</span></div>
+          <div style="display: flex; gap: 0.8rem;"><span style="font-size: 1.8rem;">📈</span><span><strong>Data that actually gets used</strong> — we structure fields for easy analysis, grant reporting, and capital planning.</span></div>
+        </div>
+      </div>
+      <div style="flex: 1; min-width: 200px; background: #d4e3ed; border-radius: 2rem; padding: 2rem 1.5rem; text-align: center;">
+        <span style="font-size: 4rem;">💧⚙️</span>
+        <p style="font-weight: 500; margin-top: 1rem;"><em>"We finally know what's in the ground."</em> — Public works director</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT + consultation CTA -->
+  <section id="contact" class="bg-soft">
+    <div class="container">
+      <h2 class="text-center">Schedule a free consultation</h2>
+      <p class="text-center" style="font-size: 1.2rem; max-width: 650px; margin: 0 auto 2rem;">Tell us about your water or sewer survey needs. We’ll show you how Fulcrum can transform your field data.</p>
+      <div class="contact-form">
+        <form action="#" method="post">
+          <div class="form-grid">
+            <div class="form-group"><input type="text" placeholder="Full name *" required></div>
+            <div class="form-group"><input type="text" placeholder="City / municipality *" required></div>
+            <div class="form-group"><input type="text" placeholder="Role (e.g., Public works director) *" required></div>
+            <div class="form-group"><input type="text" placeholder="Phone (optional)"></div>
+          </div>
+          <div class="form-group"><textarea placeholder="Tell us about your project / infrastructure goals *" required></textarea></div>
+          <div style="display: flex; justify-content: center; margin-top: 1.8rem;">
+            <button type="submit" class="btn" style="font-size: 1.2rem;">📆 Book a call – no obligation</button>
+          </div>
+          <p class="text-center" style="margin-top: 1.2rem; color: #4e6b7c;">We reply within one business day.</p>
+        </form>
+      </div>
+      <!-- direct contact methods -->
+      <div style="display: flex; justify-content: center; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap;">
+        <span>📞 (555) 123-4567</span>
+        <span>✉️ hello@fulcrumwatersewer.example</span>
+        <span>📍 serving municipalities nationwide</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-bottom">
+    <p>© 2025 Fulcrum Water & Sewer Solutions. Built for cities, by infrastructure people.  </p>
+    <p style="margin-top: 0.5rem;">Keywords: Fulcrum developer · water infrastructure survey · sewer inspection · municipal data · GIS integration · mobile field data collection</p>
+  </footer>
+
+  <!-- lightweight hover/css only, no js waiting, inline everything ensures speed -->
+  <!-- image compression: no external images = 0 weight. all icons text/emoji, perfect for 1s load -->
+</body>
+</html>
